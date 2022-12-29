@@ -2,98 +2,86 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Resume Screening</title>
-    
-    <!-- Template Stylesheet -->
+  <meta charset="utf-8">
+  <title>Resume Screening</title>
 
-    <link href="{{url_for('static', filename='css/login.css')}}" rel="stylesheet">
+  <!-- Template Stylesheet -->
+
+  <link href="{{url_for('static', filename='css/login.css')}}" rel="stylesheet">
 </head>
 
 
 <body>
   <br>
   <br>
-  <form action="/submit" method="post">
-      <div class="cont">
-          <div class="form sign-in">
-              <h2>Welcome Job Seeker</h2>
-                <label>
-                  Email
-                </label>
-                  <input 
-                    type="email", 
-                    name="email",
-                    id="email",
-                    placeholder="Enter email" />
-                <label>
-                  Password
-                </label>
-                  <input 
-                    type="password", 
-                    name="password",
-                    id="password",
-                    placeholder="Enter Password"
-                    />
-              
-              <p class="forgot-pass">Forgot password?</p>
-              <button type="button" class="submit" id="signin" > Sign In </button> 
-              <button type="button" >  <a href="/log_rec" style="color:rgb(112, 210, 246) ;">Log in as recruiter</a></button>
-          </div>
-          <div class="sub-cont">
-              <div class="img">
-                  <div class="img__text m--up">
-                   
-                      <h3>Don't have an account? Please Sign up!<h3>
-                  </div>
-                  <div class="img__text m--in">
-                  
-                      <h3>If you already has an account, just sign in.<h3>
-                  </div>
-                  <div class="img__btn">
-                      <span class="m--up">Sign Up</span>
-                      <span class="m--in">Sign In</span>
-                  </div>
-              </div>
-              <div class="form sign-up">
-                <form name = "seeker_signup" id = "seeker_signup" action="/login" method="POST">
-                  <h2>Create your Account as job seeker</h2>
-                  <label>
-                      <span>Name</span>
-                      <input type="text" 
-                      name="seekername" 
-                      id="seekername"/>
-                  </label>
-                  <label>
-                      <span>Email</span>
-                      <input type="email" 
-                      name="seekeremail" 
-                      id="seekeremail" />
-                  </label>
-                  <label>
-                      <span>Password</span>
-                      <input type="password" 
-                      name=" seekerpassword" 
-                      id="seekerpassword" />
-                  </label>
-                  <button  type="submit" class="submit">Sign Up</button>
-                  <button type="button"  >  <a href="/log_rec" style="color:rgb(112, 210, 246) ;">Sign Up as recruiter</a></button>
-                </form>  
-              </div>
-          </div>
+
+  <div class="cont">
+    <form action="/seeker/signin" method="post">
+      <div class="form sign-in">
+        <h2>Welcome Job Seeker</h2>
+        <label>
+          Email
+        </label>
+        <input type="email" , name="email" , id="email" , placeholder="Enter email" />
+        <label>
+          Password
+        </label>
+        <input type="password" , name="password" , id="password" , placeholder="Enter Password" />
+
+        <p class="forgot-pass">Forgot password?</p>
+        <button type="submit" class="submit" id="signin"> Sign In </button>
+        <button type="button"> <a href="/log_rec" style="color:rgb(112, 210, 246) ;">Log in as recruiter</a></button>
       </div>
     </form>
-      <script>
-       
-          document.querySelector('.img__btn').addEventListener('click', function() {
-              document.querySelector('.cont').classList.toggle('s--signup');
-          });
-          document.getElementById("signin").onclick = function () {
-        location.href = "/index";
-          };
-      </script>
+    <div class="sub-cont">
+      <div class="img">
+        <div class="img__text m--up">
+
+          <h3>Don't have an account? Please Sign up!<h3>
+        </div>
+        <div class="img__text m--in">
+
+          <h3>If you already has an account, just sign in.<h3>
+        </div>
+        <div class="img__btn">
+          <span class="m--up">Sign Up</span>
+          <span class="m--in">Sign In</span>
+        </div>
+      </div>
+      <div class="form sign-up">
+        <form name="seeker_signup" id="seeker_signup" action="/seeker/register" method="POST">
+          <h2>Create your Account as job seeker</h2>
+          <label>
+            <span>Name</span>
+            <input type="text" name="seekername" id="seekername" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="seekeremail" id="seekeremail" />
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" name=" seekerpassword" id="seekerpassword" />
+          </label>
+          <button type="submit" class="submit">Sign Up</button>
+          <button type="button"> <a href="/log_rec" style="color:rgb(112, 210, 246) ;">Sign Up as recruiter</a></button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    document.querySelector('.img__btn').addEventListener('click', function () {
+      document.querySelector('.cont').classList.toggle('s--signup');
+    });
+    document.getElementById("signin").onclick = function () {
+      location.href = "/index";
+    };
+  </script>
 
 
-  
+
 </body>
+
 </html>
