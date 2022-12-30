@@ -287,6 +287,7 @@ def login():
             return render_template("login.html", params=params)
     return redirect('/Post')
 
+<<<<<<< HEAD
 @app.route("/log_rec", methods=['POST', 'GET'])
 def log_rec():
      if not session.get("ID"):
@@ -337,6 +338,44 @@ def SeekerSignin():
 
 
 
+=======
+
+@app.route("/seeker/signin", methods=['GET', 'POST'])
+def SeekerSignin():
+    if request.method == 'POST':
+        engine = create_engine(
+            "mysql+mysqldb://root:@localhost/resumescreening")
+        # mysql+mysqldb://<user>:<password>@<host>[:<port>]/<dbname>
+
+        email = request.form['email']
+        password = request.form['password']
+        # email = "tamur@gmail.com"
+        # password = "t123"
+        # seeker_table = seeker_signin.metadata.tables["seeker_signin"]
+        Session = sessionmaker(bind=engine)
+        s = Session()
+        query = s.query(seeker_signin).filter(
+            seeker_signin.seeker_email == email, seeker_signin.seeker_pass == password)
+        result = query.first()
+        print(result)
+        if result:
+            session['logged_in'] = True
+            session['role'] = "Seeker"
+            session['ID'] = result.seeker_id
+            flash("successfully logged in")
+            return redirect('/Post')
+            # redirect("/Post")
+        else:
+            flash('wrong password!')
+    return render_template('login.html', params=params)
+
+
+@app.route("/log_rec", methods=['POST', 'GET'])
+def log_rec():
+    return render_template('log_rec.html', params=params)
+
+
+>>>>>>> 68a36b9b1c7245b962c16b5dea331c194f28ba6d
 @app.route("/job-list", methods=['POST', 'GET'])
 def job_list():
     return render_template('job-list.html', params=params)
